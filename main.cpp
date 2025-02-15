@@ -29,13 +29,32 @@ int main() {
     Complex conjugate = a.conj();
     std::cout << "Conjugate of a: " << conjugate << std::endl;
     Complex conjuagate = b.conj();
-    std::cout << "Conjugate of b:" << conjugate << std::endl;
+    std::cout << "Conjugate of b:" << conjuagate << std::endl;
 
     // Модуль и аргумент
     std::cout << "Module of a: " << a.getAbs() << std::endl;
     std::cout << "Module of b: " << b.getAbs() << std::endl;
     std::cout << "Argument of a: " << a.getArg() << std::endl;
     std::cout << "Argument of b: " << b.getArg() << std::endl;
+
+    Complex equal = a.equal(b);
+    if (equal.getreal() == 1 && equal.getimag() == 1) {
+        std::cout << "Equality of value: a = b" << std::endl; 
+    }
+    else {
+        std::cout << "Equality of value: a != b" << std::endl; 
+    }
+    
+    
+    Complex res = a.compar(b);
+    if (res.getreal() == 0) {
+        std::cout << "Module a and b: a = b" << std::endl;
+    }
+    else if (res.getreal() == 1) {
+        std::cout << "Module a and b: a > b"<< std::endl;
+    } else {
+        std::cout<<"Module a and b: a < b"<< std:: endl;
+    }
 
     // output complex value
     /*Complex c;

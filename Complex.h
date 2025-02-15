@@ -86,9 +86,29 @@ public:
 	}
 	Complex div(Complex b) {
 		Complex res;
-		res.real = (this->real * b.getreal() + this->imag * b.getimag()) / b.getreal() * b.getreal() + b.getimag() * b.getimag();
-		res.imag = (this->imag * b.getreal() + this->real * b.getimag()) / b.getreal() * b.getreal() + b.getimag() * b.getimag();
+		res.real = (this->real * b.getreal() + this->imag * b.getimag()) /( b.getreal() * b.getreal() + b.getimag() * b.getimag());
+		res.imag = (this->imag * b.getreal() + this->real * b.getimag()) /( b.getreal() * b.getreal() + b.getimag() * b.getimag());
 		return res;
+	}
+
+	Complex equal(Complex b) {
+		
+		return (this->real == b.real && this->imag == b.imag) ? Complex(1, 1) : Complex(0, 0);
+	}
+
+	Complex compar(Complex b) {
+		double absA = this->getAbs();
+		double absB = b.getAbs();
+
+		if (absA == absB) {
+			return Complex(0,0);
+		}
+		else if (absA > absB) {
+			return Complex(1,0);
+		}
+		else {
+			return Complex(- 1,0);
+		}
 	}
 
 	friend std::istream& operator>>(std::istream & in, Complex& a) {
@@ -99,6 +119,8 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, Complex a) {
 		out << a.getreal() << "+(" << a.getimag() << "i)";
 		return out;
+
+
 	}
 
 };
